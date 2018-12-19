@@ -15,10 +15,9 @@ setuptools.setup(
     license='MIT',
 
     classifiers=[
-        'Environment :: MysqlDb Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Natural Language :: Chinese',
+        'Natural Language :: English',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2',

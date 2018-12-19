@@ -16,10 +16,9 @@ Description: Mysql-Tool
         [查看地址](https://github.com/happyshi0402/mysql_tool)！
         
 Platform: UNKNOWN
-Classifier: Environment :: MysqlDb Environment
 Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: MIT License
-Classifier: Natural Language :: Chinese
+Classifier: Natural Language :: English
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python :: 2
