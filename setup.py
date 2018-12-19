@@ -1,9 +1,13 @@
-from distutils.core import setup
+import setuptools
 
-setup(
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
     name='MySQL-Tool',
     version='0.0.1',
     description='MysqlDb module use.',
+    long_description=long_description,
     url='https://github.com/happyshi0402/mysql_tool.git',
         
     author='Wang Shifeng',
@@ -20,6 +24,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
     ],
-    packages=['mysql_tool'],
+    packages=setuptools.find_packages(),
     
 )

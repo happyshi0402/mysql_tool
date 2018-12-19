@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: MySQL-Tool
+Version: 0.0.1
+Summary: MysqlDb module use.
+Home-page: https://github.com/happyshi0402/mysql_tool.git
+Author: Wang Shifeng
+Author-email: wsf121116@163.com
+License: MIT
+Description: Mysql-Tool
+        =========
+        
+        用于对MysqlDb调用的封装
+        
+        安装命令： `pip install Mysql-Tool`
+        
+        [查看地址](https://github.com/happyshi0402/mysql_tool)！
+        
+Platform: UNKNOWN
+Classifier: Environment :: MysqlDb Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Chinese
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
