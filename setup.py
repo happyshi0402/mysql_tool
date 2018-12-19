@@ -1,14 +1,14 @@
 from distutils.core import setup
 
 setup(
-    name='Mysql-Tool',
+    name='MySQL-Tool',
     version='0.0.1',
-    description='Access use mysql for MysqlDb.',
+    description='MysqlDb工具的进一步封装调用，使调用方法更简单.',
     url='https://github.com/happyshi0402/mysql_tool.git',
         
     author='Wang Shifeng',
     author_email='wsf121116@163.com',
-    license='BSD-3',
+    license='MIT',
 
     install_requires=[
     ],
