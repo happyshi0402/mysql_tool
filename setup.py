@@ -14,6 +14,9 @@ setuptools.setup(
     author_email='wsf121116@163.com',
     license='MIT',
 
+    install_requires=["Mysql-python"
+    ],
+
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
