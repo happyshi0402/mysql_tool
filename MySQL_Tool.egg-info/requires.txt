@@ -1,1 +1,1 @@
-Mysql-python
+pymysql>=0.9.3
