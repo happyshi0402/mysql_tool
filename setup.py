@@ -7,7 +7,6 @@ setuptools.setup(
     name='MySQL-Tool',
     version='1.0.1',
     description='pymysql module use.',
-    long_description=long_description,
     url='https://github.com/happyshi0402/mysql_tool.git',
     author='Wang Shifeng',
     author_email='wsf121116@163.com',
