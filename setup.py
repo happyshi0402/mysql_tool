@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='MySQL-Tool',
-    version='1.0.4',
+    version='1.0.5',
     description='pymysql module use.',
     url='https://github.com/happyshi0402/mysql_tool.git',
     author='Wang Shifeng',
