@@ -2,7 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 2.7 (mysql_tool)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.7.4 (sftp://zkhc_wsf@192.168.5.26:22/home/anaconda3/bin/python)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

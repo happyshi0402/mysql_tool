@@ -1,6 +1,6 @@
 Metadata-Version: 1.2
 Name: MySQL-Tool
-Version: 1.0.1
+Version: 1.0.2
 Summary: pymysql module use.
 Home-page: https://github.com/happyshi0402/mysql_tool.git
 Author: Wang Shifeng
@@ -17,4 +17,5 @@ Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python :: 2
 Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.9
 Requires-Python: >=2.7

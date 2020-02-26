@@ -2,7 +2,7 @@
 # encoding: utf-8
 """
 # @Software: PyCharm
-# @Author : 王世锋
+# @Author : wsf
 # @Email：785707939@qq.com
 # @Time：2018/12/11 14:52
 # @File : mysql_tool.py
@@ -146,8 +146,8 @@ class my_mysql():
         """
 
         :param array_sql_action:
-            格式是 单个 sql, 或者 list_sql(列表形式的）
-            list sql 全部执行成功， return len(list_sql)
+            The format is a single SQL, or list ﹣ SQL
+        All the list SQL executed successfully, return len (list_sql)
         :return:
         """
         handled_item = 0
