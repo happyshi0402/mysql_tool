@@ -14,6 +14,7 @@ import pymysql
 warnings.simplefilter("ignore")
 
 __author__ = 'wangshifeng'
+__version__ = '1.0.4'
 
 
 class my_mysql():
