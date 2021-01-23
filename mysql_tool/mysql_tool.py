@@ -4,7 +4,7 @@
 # @Software: PyCharm
 # @Author : wsf
 # @Email：785707939@qq.com
-# @Time：2018/12/11 14:52
+# @Time：2020/01/23 08:52
 # @File : mysql_tool.py
 """
 import logging
@@ -14,7 +14,7 @@ import pymysql
 warnings.simplefilter("ignore")
 
 __author__ = 'wangshifeng'
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 
 
 class my_mysql():
@@ -40,27 +40,16 @@ class my_mysql():
         rows = []
         try:
             con = self._connect()
+            if return_type == "dict":
+                cur = con.cursor(self.driver.cursors.DictCursor)
+            else:
+                cur = con.cursor()
             try:
-                if return_type == "dict":
-                    cur = con.cursor(self.driver.cursors.DictCursor)
-                else:
-                    cur = con.cursor()
-                if type(sql) is str:
-                    if ";" not in sql:
-                        logging.warn('mysql_toool.my_fetchall: sql not end with \";\";')
-                    cur.execute(sql, args)
-                    rows = cur.fetchall()
-                    rows = [r for r in rows]
-                elif type(sql) is bytes:
-                    if ";" not in sql:
-                        logging.warn('mysql_toool.my_fetchall: sql not end with \";\";')
-                    cur.execute(sql, args)
-                    rows = cur.fetchall()
-                    rows = [r for r in rows]
-                else:
-                    logging.error(
-                        'mysql_toool.my_fetchall: sql, execute: cur.execute: '
-                        'TypeError: must be string or read-only buffer, not other')
+                if ";" not in sql:
+                    logging.warning('mysql_toool.my_fetchall: sql not end with \";\";')
+                cur.execute(sql, args)
+                rows = cur.fetchall()
+                rows = [r for r in rows]
             except self.driver.Error as error:
                 logging.error('mysql_toool.my_fetchall: sql:' + str(error))
             finally:
@@ -75,25 +64,15 @@ class my_mysql():
         row = []
         try:
             con = self._connect()
+            if return_type == "dict":
+                cur = con.cursor(self.driver.cursors.DictCursor)
+            else:
+                cur = con.cursor()
             try:
-                if return_type == "dict":
-                    cur = con.cursor(self.driver.cursors.DictCursor)
-                else:
-                    cur = con.cursor()
-                if type(sql) is str:
-                    if ";" not in sql:
-                        logging.warn('mysql_toool.my_fetchone: sql not end with \";\";')
-                    cur.execute(sql, args)
-                    row = cur.fetchone()
-                elif type(sql) is unicode:
-                    if ";" not in sql:
-                        logging.warn('mysql_toool.my_fetchone: sql not end with \";\";')
-                    cur.execute(sql, args)
-                    row = cur.fetchone()
-                else:
-                    logging.error(
-                        'mysql_toool.my_fetchone: sql, execute: cur.execute: '
-                        'TypeError: must be string or read-only buffer, not other')
+                if ";" not in sql:
+                    logging.warning('mysql_toool.my_fetchone: sql not end with \";\";')
+                cur.execute(sql, args)
+                row = cur.fetchone()
             except self.driver.Error as error:
                 logging.error('mysql_toool.my_fetchone: sql:' + str(error))
             finally:
@@ -105,6 +84,29 @@ class my_mysql():
         if str(row) == "(None,)":
             row = []
         return row
+
+    def my_fetchone_new(self, sql_list, args=None, return_type=None):
+        row_list = []
+        try:
+            con = self._connect()
+            if return_type == "dict":
+                cur = con.cursor(self.driver.cursors.DictCursor)
+            else:
+                cur = con.cursor()
+            try:
+                for sql in sql_list:
+                    if ";" not in sql:
+                        logging.warning('mysql_toool.my_fetchone: sql not end with \";\";')
+                    cur.execute(sql, args)
+                    row = cur.fetchone()
+                    row_list.append(row)
+            except self.driver.Error as error:
+                logging.error('mysql_toool.my_fetchone: sql:' + str(error))
+            finally:
+                con.close()
+        except self.driver.Error as error:
+            logging.error('mysql_toool.my_fetchone: default.cnf error:' + str(error))
+        return row_list
 
     def execute(self, sql, args=None):
         """
@@ -120,22 +122,37 @@ class my_mysql():
         handled_item = 0
         try:
             con = self._connect()
+            cur = con.cursor()
             try:
-                cur = con.cursor()
-                if type(sql) is str:
-                    if ";" not in sql:
-                        logging.warn('mysql_toool.execute: sql not end with \";\";')
-                    handled_item = cur.execute(sql, args)
-                elif type(sql) is unicode:
-                    if ";" not in sql:
-                        logging.warn('mysql_toool.execute: sql not end with \";\";')
-                    handled_item = cur.execute(sql, args)
-                else:
-                    logging.error(
-                        'mysql_toool.execute: sql, execute: cur.execute: '
-                        'TypeError: must be string or read-only buffer, not other')
+                if ";" not in sql:
+                    logging.warning('mysql_toool.execute: sql not end with \";\";')
+                handled_item = cur.execute(sql, args)
             except self.driver.Error as error:
+                raise error
                 logging.error('mysql_toool.execute: sql:' + str(error))
+            finally:
+                con.commit()
+                con.close()
+        except self.driver.Error as error:
+            print(sql)
+            raise error
+            logging.error('mysql_toool.execute: default.cnf error:' + str(error))
+        return handled_item
+
+    def insert(self, sql, args=None):
+        """
+        insert action
+        :return:
+        """
+        handled_item = 0
+        try:
+            con = self._connect()
+            cur = con.cursor()
+            try:
+                cur.execute(sql, args)
+                handled_item = cur.lastrowid
+            except self.driver.Error as error:
+                logging.error('mysql_toool.execute: sql:' + sql+str(error))
             finally:
                 con.commit()
                 con.close()
@@ -154,27 +171,16 @@ class my_mysql():
         handled_item = 0
         try:
             con = self._connect()
+            cur = con.cursor()
             sql = ""
             try:
-                cur = con.cursor()
                 con.autocommit(False)
                 if type(array_sql_action) is list:
                     for item in array_sql_action:
-                        if type(item) is str:
-                            sql = item
-                            if ";" not in sql:
-                                logging.warn('mysql_toool.execute_transaction: sql not end with \";\";')
-                            handled_item = handled_item + cur.execute(sql)
-                        elif type(item) is unicode:
-                            sql = item
-                            if ";" not in sql:
-                                logging.warn('mysql_toool.execute_transaction: sql not end with \";\";')
-                            handled_item = handled_item + cur.execute(sql)
-                        else:
-                            logging.error(
-                                'mysql_toool.execute_transaction: sql, execute: cur.execute: '
-                                'TypeError: must be string or read-only buffer, not other')
-                            break
+                        sql = item
+                        if ";" not in sql:
+                            logging.warning('mysql_toool.execute_transaction: sql not end with \";\";')
+                        handled_item = handled_item + cur.execute(sql)
                 else:
                     handled_item = cur.execute(array_sql_action)
             except self.driver.Error as error:

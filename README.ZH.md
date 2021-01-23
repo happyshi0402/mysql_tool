@@ -12,6 +12,10 @@ Mysql-Tool
 解决编码问题
     使用 from mysql_tool import my_mysqls
 
+1.0.6：
+    
+    1. 增加insert ，返回新增加 id 
+    
 安装命令： `pip install Mysql-Tool`
 
 [查看地址](https://github.com/happyshi0402/mysql_tool)！

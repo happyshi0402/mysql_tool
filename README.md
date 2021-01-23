@@ -22,6 +22,9 @@ Use from:
     
         from mysql_tool import my_mysqls
 
+1.0.6: 
+
+    add new function: insert , return id
 
 Install command: ` pip install Mysql-Tool`
 
